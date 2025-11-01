@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-web-app-deploy
+  labels:
+    app: go-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: go-web
+  template:
+    metadata:
+      labels:
+        app: go-web
+    spec:
+      containers:
+      - name: go-web-app-cont
+        image: karthikeya2k24/go-web-app:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
