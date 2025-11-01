@@ -35,16 +35,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+
+      - name: Clear Go Module Cache (Crucial Fix)
+        run: |
+          go clean -modcache
+          echo "✅ Go module cache cleared"
+
       - name: Clear GolangCI-Lint Cache
         run: |
           rm -rf ~/.cache/golangci-lint || true
-          echo "✅ Cache cleared"
+          echo "✅ GolangCI-Lint Cache cleared"
 
       - name: Run Golang Linter
         uses: golangci/golangci-lint-action@v6
         with:
-          #version: v1.56.2
           version: v1.61.0
+          args: --timeout=5m
 
   docker-build-push:
     runs-on: ubuntu-latest
