@@ -35,6 +35,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Clear GolangCI-Lint Cache
+        run: |
+          rm -rf ~/.cache/golangci-lint || true
+          echo "✅ Cache cleared"
+
       - name: Run Golang Linter
         uses: golangci/golangci-lint-action@v6
         with:
