@@ -20,7 +20,8 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
+          #go-version: '1.22'
+          go-version-file: 'go.mod'
 
       - name: Build Go App
         run: go build -o go-web-app
