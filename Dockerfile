@@ -1,4 +1,4 @@
- ---------- Build Stage ----------
+#---------- Build Stage ----------
 FROM golang:1.23-alpine AS build
 
 WORKDIR /app
@@ -13,7 +13,7 @@ COPY . .
 # Build the Go binary
 RUN go build -o app-built main.go
 
-# ---------- Run Stage ----------
+#---------- Run Stage ----------
 FROM alpine:latest
 
 WORKDIR /root/
